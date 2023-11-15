@@ -1,0 +1,278 @@
+Q) Which are legal:
+
+A) class X {
+    var x = 99;
+  }
+
+B) void doStuff(var x) { }
+
+C) void doStuff() {
+    var x;
+    x = 100;
+  }
+
+D) void doStuff() {
+    var x = 100;
+  }
+
+E) void doStuff() {
+    var x = null;
+  }
+
+Q) Which are legal:
+
+   A) for (var x = 0; x < 3; x++)
+       System.out.println(x);
+
+   B) try (var in = new FileReader("");
+           var out = new FileWriter("")) {
+      }
+
+   C) try (FileReader in = new FileReader("")) {
+      } catch (var ex) { }
+
+   D) void doStuff() {
+        var x = new int[]{ 1, 2, 3 };
+      }
+
+   E) void doStuff() {
+        var x = { 1, 2, 3 };
+      }
+
+Q) Given:
+var x = true ? "99" : 99;
+
+What is the type of x?
+A) none, it's fails to compile
+B) int
+C) String
+D) Object
+E) none of the above
+
+Q) What happens here?
+var var = "var";
+
+Q) Given:
+
+   String message = """Hello\
+   Java 17 World!""";
+   System.out.println(message + "XXX");
+
+What is the result?
+A) Compilation fails
+B) Exception at runtime
+C) Hello
+   Java 17 World!XXX
+D) Hello Java 17 World!XXX
+E) Hello Java 17 World!
+   XXX
+
+Q) Given:
+
+int x = -1;
+System.out.println(x & 5);
+
+What is the result?
+A) Compilation fails
+B) Exception at runtime
+C) -1
+D) 0x00000005
+E) 5
+
+Q) Given
+    int x = 10;
+    System.out.println("value is " + (x++ = 99));
+
+What is the result?
+A) 10
+B) 11
+C) 99
+D) 109
+E) Compilation fails
+
+Q) Given:
+int j = 0;
+for (int i = 0; i < 3; i++) {
+  if (i > ++j && i % 2 == 0) ++i = ++j;
+  if (j > i + 2) continue;
+  ++j;
+  System.out.println(i + ", " + j);
+}
+
+What is the result?
+A) 0, 2
+   1, 4
+B) 0, 2
+C) 1, 4
+D) The program runs forever
+E) Compilation fails
+
+Q) Which print "true"
+A) String s = "Hello";
+   String t = "He";
+   t += "llo";
+   sout(s == t);
+B) String s = "Hello";
+   String t = "He";
+   t += "llo";
+   sout(s.equals(t));
+C) StringBuilder s = new StringBuilder("Hello");
+   StringBuilder t = new StringBuilder("He");
+   t.append("llo");
+   sout(s.equals(t));
+D) List<String> ls = List.of("Fred", "Jim");
+   List<String> ls2 = new ArrayList<>(ls);
+   sout(ls.equals(ls2));
+E) LocalDate ld = LocalDate.of(2021, 3, 29);
+   LocalDate ld2 = LocalDate.of(2021, 3, 29);
+   sout(ld.equals(ld2));
+
+Q) Which are true?
+class X {
+  static String h = "Hel" + "lo";
+}
+  String s1 = "Hello";
+  String s2 = new StringBuilder("Hello").toString();
+  String s3 = s2.intern();
+A) s1 == s2
+B) s2 == s3
+C) s1 == s3
+D) X.h == s1
+E) None of the above
+
+Q) Given:
+  public class Scr {
+    static int x = -1;
+    public static void main(String[] args) { new ScrSub().doStuff();}
+  }
+and:
+  class ScrSub extends Scr {
+    int x = 99;
+    void doStuff() {
+      System.out.print(x + ","); // line n1
+      int x = 100;
+      System.out.print(x + ",");
+      System.out.print(Scr.x + ",");
+    }
+  }
+What is the result?
+A) Compilation fails at line n1
+B) Exception at line n1
+C) 99, 100, -1
+D) 0, 100, 99
+E) 0, 100, -1
+
+Q) Given:
+Object obj = "Hello"; boolean answered = false;
+if (obj instanceof String) {
+  String str = (String)obj;
+  if (str.length() > 3) { System.out.println(str); answered = true; }
+}
+if (!answered) System.out.println("Nope");
+Which replace the if clause to produce the same output?
+A)    System.out.println(obj instanceof String str && str.length() > 3 ? str : "Nope");
+B)    if (obj instanceof String str when str.length() > 3)
+        System.out.println(str);
+      else
+        System.out.println("Nope");
+C)    if (obj instanceof String str if str.length() > 3)
+        System.out.println(str);
+      else
+        System.out.println("Nope");
+D)    System.out.println(obj instanceof String.class str && str.length() > 3 ? str : "Nope");
+E)    if (!(obj instanceof String str) || str.length() <= 3)
+        System.out.println("Nope");
+      else
+        System.out.println(str);
+
+Q) Which print true?
+Iterable<String> is = List.of("a", "b", "c");
+Object obj = is;
+A) System.out.println(is instanceof List);
+B) System.out.println(obj instanceof List l && l.size() > 2);
+
+if (obj instanceof List) {
+  List l = (List)obj;
+  ...
+
+C) System.out.println(obj instanceof List<String> ls);
+D) System.out.println(is instanceof Collection<? extends CharSequence> cs);
+E) System.out.println(is instanceof List<String> ls || ls.size() > 2);
+
+Q) Given:
+enum Day {MONDAY;}
+
+Given a switch statement:
+    switch (x) {
+    }
+
+What type(s) are valid for x?
+A) Boolean
+B) Character
+C) int
+D) Day
+E) String
+
+Q) Given:
+    String s = "Hello";
+    switch (s) {
+      case "Hello" ->
+          System.out.print("Bonjour "); // line n1
+          System.out.print("Guten Tag ");
+      default -> System.out.print("Bye");
+    }
+
+Which is true?
+A) The code prints: Bonjour Guten Tag Bye
+B) The code prints: Bonjour Guten Tag
+C) If line n1 is removed the code prints: Guten Tag Bye
+D) If line n1 is removed the code prints: Guten Tag
+E) The code fails to compile
+
+Q) Given
+    short s = 8;
+    System.out.println(switch (s) { // line n1
+      // line n2
+      default -> "It's something else"; // line n3
+    });
+
+Which are true?
+A) Compilation fails at line n1
+B) Compilation fails at line n3
+C) The code runs and prints It's something else
+D) Adding at line n2
+   case 2,4,6,8 -> "Even < 10";
+   gives the output Even < 10
+E) Adding at line n2
+   case 2 -> case 4 -> case 6 -> case 8 -> "Even < 10";
+   gives the output Even < 10
+
+Q)  Given:
+  public static void funct(int x) {
+    x = x + 1;
+  }
+
+and:
+    int x = 99;
+    funct(x);
+    System.out.println(x);
+
+  What is the result?
+  A) 99
+  B) 100
+  C) An error
+
+Q)
+  public static void q13A(int[] x) {
+    x[0] = x[0] + 1;
+  }
+
+and:
+    int x[] = {99};
+    q13A(x);
+    System.out.println(x[0]);
+
+  What is the result?
+  A) 99
+  B) 100
+  C) An error

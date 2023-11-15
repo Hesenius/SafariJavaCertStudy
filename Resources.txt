@@ -3,7 +3,7 @@ Resources
 
 Quiztool:
  - https://dancingcloudservices.net/quiz-tool/
-Github repo (NOTE: this will vanish in two weeks, clone/download before then!)
+GitHub repo (NOTE: this will vanish in two weeks, clone/download before then!)
  - https://github.com/SimonHGR/SafariJavaCertStudy
 
 Pre-recorded Certification videos

@@ -488,3 +488,25 @@ B)    System.out.println(f1.equals(f2));  prints true
 C)    f1.color = "brown"; is valid
 D)    System.out.println(f1.color); prints yellow
 E)    System.out.println(f1.color()); prints yellow
+
+Q)
+Given:
+public static Predicate<String> getOne(int x) {
+  return new Predicate<String>() {
+    @Override
+    public boolean test(String s) {
+      return s.length() >= ++x;
+    }
+  };
+}
+and:
+System.out.println(
+    List.of("Fred", "Jim", "Sheila")
+        .removeIf(getOne(3)));
+
+What is the result?
+A) true
+B) [Fred, Jim]
+C) [Jim]
+D) Compilation fails
+E) Exception at runtime

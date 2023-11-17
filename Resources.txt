@@ -1,3 +1,14 @@
+Upcoming Courses on O'Reilly:
+Getting started with Java--November 20:
+https://learning.oreilly.com/live-events/getting-started-with-java/0636920146551/
+
+Java Generics in 4 Hours--December 4:
+https://learning.oreilly.com/live-events/-/0636920126201/
+
+Modern Java Exception Handling--January 16 (not on O'Reilly yet)
+
+Go the Right Way--January 18 (not on O'Reilly yet)
+
 Resources
 ---------
 

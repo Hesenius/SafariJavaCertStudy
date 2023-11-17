@@ -510,3 +510,122 @@ B) [Fred, Jim]
 C) [Jim]
 D) Compilation fails
 E) Exception at runtime
+
+Q) Given:
+  interface StudentCriterion {
+    boolean test(Student s);
+  }
+
+and:
+  class Student {
+    public int getGpa() { return 0; }
+    public List<String> getCourses() { return null; }
+  }
+
+    Which are legal (individually):
+    A) StudentCriterion sc = Student s -> { return s.getGpa() > 3;};
+    B) StudentCriterion sc = s -> { s.getGpa() > 3 };
+    C) Object sc = s -> {return s.getGpa() > 3;};
+    D) StudentCriterion sc = (s) -> s.getGpa() > 3;
+    E) StudentCriterion sc = s -> s.getCourses().size();
+
+Q) Which are legal individually:
+A) Function<String, String> fss = s -> { System.out.println(s); };
+B) Consumer<String> cs = s -> { System.out.println(s); };
+C) Supplier<String> ss = (s1, s2) -> s1 + s2;
+D) BiPredicate<String> bps = (String s) -> { return s.length() > 0; };
+E) ToIntFunction<String> tofs = s -> s.length();
+
+Q) Which are correct declarations?
+A) Comparator<String> cs = s1, s2 -> s2.compareTo(s1);
+B) Comparator<String> cs = (s1, s2) -> s2.compareTo(s1);
+C) Comparator<String> cs = (var s1, String s2) -> s2.compareTo(s1);
+D) Comparator<String> cs = (var s1, s2) -> s2.compareTo(s1);
+E) Comparator<String> cs = (String s1, String s2) -> s2.compareTo(s1);
+
+Q) Given:
+      ???? (s, t) -> s.length() - t.length();
+
+Which are correct inserted in place of ????
+A) BiFunction<String, String, Integer> f =
+B) BiPredicate<String> f =
+C) Comparator<String> f =
+D) Supplier<String, Integer> f =
+E) BinaryOperator<String> f =
+
+Q)
+Given:
+  class Base {
+    void doBaseStuff() { System.out.println("doBaseStuff"); }
+  }
+and:
+  class Sub extends Base {
+    void doBaseStuff() { System.out.println("doSubStuff"); }
+  }
+
+In the Base and Sub classes, which are true in isolation?
+
+A) doBaseStuff in Base can be marked throws Exception without causing errors
+B) doBaseStuff in Base can be marked throws RuntimeException without causing errors
+C) doBaseStuff in Sub can be marked throws Exception without causing errors
+D) doBaseStuff in Sub can be marked throws RuntimeException without causing errors
+E) if doBaseStuff in Base were marked throws Exception,
+   then doBaseStuff in Sub can be marked throws IOException without causing errors
+
+Q)
+Given:
+  class Q23Base {
+    public Q23Base get() {
+      return null;
+    }
+  }
+
+  class Q23Sub extends Q23Base {
+  }
+
+Which methods may individually be added to Q23Sub?
+
+A) public Q23Base get() { return null; }
+B) public Q23Sub get() { return null; }
+C) public Runnable get() { return null; }
+E) None of these
+
+Q)  Given:
+  public int getValue() {
+    return 1;
+  }
+
+  Which of these methods may individually be added to a subclass of this class?
+  A) public int getValue(int x) {return 1;}
+  B) public String getValue() {return "Hello";}
+  C) public String getValue(int x) {return "Hello";}
+
+Q) Given:
+class Parent {
+  Parent(int x) { y += x; out.print(", P-c: y is " + y); }
+  static { out.print(", P-si: x is " + Parent.x); }
+  static int x = 99;
+  int y = 100;
+  { y++; out.print(", P-i: y is " + y); }
+}
+class Child extends Parent {
+  int x = 200;
+  static int y = 300;
+  Child() { super(x); }
+  Child(int x) { this(); }
+  { out.print(", C-i x: is " + x); }
+  static { out.print(", C-si: y is " + y); }
+}
+class InitOrder3 {
+  public static void main(String[] args) {
+    out.print("Hello!");
+    new Child(-1);
+    out.println(" Goodbye!");
+  }
+}
+What is the result?
+A) Compilation fails
+B) Exception at runtime
+C) Hello!, P-si: x is 0, C-si: y is 300, P-i: y is 101, P-c: y is 401, C-i x: is 200 Goodbye!
+D) , P-si: x is 0, C-si: y is 300Hello!, P-i: y is 101, P-c: y is 401, C-i x: is 200 Goodbye!
+E) Hello!, P-si: x is 99, C-si: y is 300, P-i: y is 101, P-c: y is 100Goodbye!
